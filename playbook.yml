@@ -1,0 +1,15 @@
+- hosts: localhost
+  connection: local
+  tasks:
+    - name: Do Activity
+      shell: echo "this was a test"
+      register: result
+    - name: Send Custom Event
+      newrelic_custom_event:
+        insert_key: <insert_key>
+        account_id: <account_id>
+        event_type: <event_name>
+        attributes:
+          language: python
+          version: 3.8
+          taskSuccess: "{{ result.rc }}"

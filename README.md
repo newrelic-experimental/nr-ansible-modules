@@ -1,36 +1,43 @@
 [![New Relic Experimental header](https://github.com/newrelic/opensource-website/raw/master/src/images/categories/Experimental.png)](https://opensource.newrelic.com/oss-category/#new-relic-experimental)
 
-# [Name of Project] [build badges go here when available]
+# New Relic Ansible modules (nr-ansible-modules)
 
->[Brief description - what is the project and value does it provide? How often should users expect to get releases? How is versioning set up? Where does this project want to go?]
+Ansible modules to ineract with newrelic apis
 
-## Installation
+## Requirements/Versions
+- ansible v[core 2.12.9]
+- python3 v[3.8]
 
-> [Include a step-by-step procedure on how to get your code installed. Be sure to include any third-party dependencies that need to be installed separately]
+## Modules: 
+- newrelic_custom_event
 
-## Getting Started
->[Simple steps to start working with the software similar to a "Hello World"]
+## Adding a Module
+ Copy the relevant module into your ansible modules folder and reference it in your ansible.cfg 
+## Module Configurations
+newrelic_custom_event:
+- Configure a playbook with the below task
+```yaml
+- name: Send Custom Event
+      newrelic_custom_event:
+        insert_key: <insert_key>
+        account_id: <account_id>
+        event_type: <event_name>
+        attributes:
+          att1: <value>
+          att2: <value>
+          att3: <value>
+```
 
-## Usage
->[**Optional** - Include more thorough instructions on how to use the software. This section might not be needed if the Getting Started section is enough. Remove this section if it's not needed.]
-
-
-## Building
-
->[**Optional** - Include this section if users will need to follow specific instructions to build the software from source. Be sure to include any third party build dependencies that need to be installed separately. Remove this section if it's not needed.]
-
-## Testing
-
->[**Optional** - Include instructions on how to run tests if we include tests with the codebase. Remove this section if it's not needed.]
-
+### Usage
+- Send custom events from within your playbook to monitor key metrics/events generated from your ansible playbooks. i.e. task status, time taken between tasks, playbook fails
 ## Support
 
 New Relic hosts and moderates an online forum where customers can interact with New Relic employees as well as other customers to get help and share best practices. Like all official New Relic open source projects, there's a related Community topic in the New Relic Explorers Hub. You can find this project's topic/threads here:
 
->Add the url for the support thread here
+>Raise any issues/feature requests through GitHub issues
 
 ## Contributing
-We encourage your contributions to improve [project name]! Keep in mind when you submit your pull request, you'll need to sign the CLA via the click-through using CLA-Assistant. You only have to sign the CLA one time per project.
+We encourage your contributions to improve nr-ansible-modules! Keep in mind when you submit your pull request, you'll need to sign the CLA via the click-through using CLA-Assistant. You only have to sign the CLA one time per project.
 If you have any questions, or to execute our corporate CLA, required if your contribution is on behalf of a company,  please drop us an email at opensource@newrelic.com.
 
 **A note about vulnerabilities**
@@ -40,5 +47,5 @@ As noted in our [security policy](../../security/policy), New Relic is committed
 If you believe you have found a security vulnerability in this project or any of New Relic's products or websites, we welcome and greatly appreciate you reporting it to New Relic through [HackerOne](https://hackerone.com/newrelic).
 
 ## License
-[Project Name] is licensed under the [Apache 2.0](http://apache.org/licenses/LICENSE-2.0.txt) License.
->[If applicable: The [project name] also uses source code from third-party libraries. You can find full details on which libraries are used and the terms under which they are licensed in the third-party notices document.]
+nr-ansible-modules is licensed under the [Apache 2.0](http://apache.org/licenses/LICENSE-2.0.txt) License.
+
