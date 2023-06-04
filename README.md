@@ -10,7 +10,7 @@ Ansible modules to ineract with newrelic apis
 
 ## Modules: 
 - newrelic_custom_event
-
+- newrelic_ct (change tracking)
 ## Adding a Module
  Copy the relevant module into your ansible modules folder and reference it in your ansible.cfg 
 ## Module Configurations
@@ -18,18 +18,30 @@ newrelic_custom_event:
 - Configure a playbook with the below task
 ```yaml
 - name: Send Custom Event
-      newrelic_custom_event:
-        insert_key: <insert_key>
-        account_id: <account_id>
-        event_type: <event_name>
-        attributes:
-          att1: <value>
-          att2: <value>
-          att3: <value>
+    newrelic_custom_event:
+      insert_key: <insert_key>
+      account_id: <account_id>
+      event_type: <event_name>
+      attributes:
+        att1: <value>
+        att2: <value>
+        att3: <value>
 ```
-
+newrelic_ct:
+- Configure a plabook with the below task
+```yaml
+- name: Send Change Tracking Event
+    newrelic_ct:
+      user_key: <user_key>
+      deployment:
+        entityGuid: MzY0NzUyM3xBUE18QVBQTElDQVRJT058MTY5NjI2ODY4Mw
+        version: 2.2
+        user: some@user
+        description: magic fix
+```
 ### Usage
 - Send custom events from within your playbook to monitor key metrics/events generated from your ansible playbooks. i.e. task status, time taken between tasks, playbook fails
+- Send Change Tracking Events from within your playbook
 ## Support
 
 New Relic hosts and moderates an online forum where customers can interact with New Relic employees as well as other customers to get help and share best practices. Like all official New Relic open source projects, there's a related Community topic in the New Relic Explorers Hub. You can find this project's topic/threads here:

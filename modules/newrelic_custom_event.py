@@ -21,7 +21,7 @@ import json
 EXAMPLES = '''
 - name:  Send Custom Event
   newrelic_custom_event:
-    insert_key: AAAAAA
+    license_key: AAAAAA
     event_type: AnsibleTestEvent
     account_id: 123456
     attributes:
@@ -33,20 +33,20 @@ EXAMPLES = '''
 def main():
     module = AnsibleModule(
         argument_spec=dict(
-            insert_key=dict(required=True, no_log=True),
+            license_key=dict(required=True, no_log=True),
             account_id=dict(required=True),
             event_type=dict(required=True),
             attributes=dict(type="json", required=False),
             validate_certs=dict(default=True, type='bool'),
         ),
-        required_together=[['insert_key','event_type','account_id']],
+        required_together=[['license_key','event_type','account_id']],
         supports_check_mode=True
     )
     
  
     # build list of params
     params = {}
-    if not module.params["insert_key"] and not module.params["event_type"] and not module.params["account_id"]:
+    if not module.params["license_key"] and not module.params["event_type"] and not module.params["account_id"]:
         module.fail_json(msg="you need to add insert key and event type")
 
     params["eventType"] = module.params["event_type"]
@@ -62,7 +62,7 @@ def main():
     url = "https://insights-collector.newrelic.com/v1/accounts/%s/events" % quote(str(module.params["account_id"]), safe='')
     data = [params]
     headers = {
-        'X-Insert-Key': module.params["insert_key"],
+        'X-Insert-Key': module.params["license_key"],
         'Content-Type': 'application/json',
     }
     response, info = fetch_url(module, url, data=module.jsonify(data), headers=headers, method="POST")
