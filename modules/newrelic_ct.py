@@ -19,7 +19,7 @@ import requests
 #
 
 EXAMPLES = """
-- name:  Send Custom Event
+- name:  Send Change Tracking Event
   newrelic_ct:
     user_key: AAAAAA //REQUIRED
     attributes: 
